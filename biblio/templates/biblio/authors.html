@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }} | Authors {% endblock %}
+
+{% block heading %} Authors {% endblock %}
+
+{% block main %}
+			{% for a in authors %}
+				<div class="row">
+				 <div class="col-md-2"><a href="/author/{{ a.pk }}"> {{ a }}</a></div>
+				 
+				 {% if user.perms.biblio.can_edit_database%}
+				 <div class="col-md-10"><a href="/delauthor/{{ a.pk }}"> Supprimer </a></div>
+				 {% endif %}
+				</div>
+			{% endfor%} 
+{% endblock %}
+
+
+{% block js %}
+	active_tab = '#tab_authors';
+{% endblock %}

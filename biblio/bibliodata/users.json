@@ -1,0 +1,13 @@
+[
+	{
+		"username": "tintin",
+		"password": "milou",
+		"groups": ["Editor"]
+	}
+
+	{
+		"username" : "tournesol",
+		"password": "bianca",
+		"groups": []
+	}
+]

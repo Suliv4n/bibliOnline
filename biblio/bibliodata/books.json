@@ -1,0 +1,97 @@
+[
+    {"title"  : "Anges et démons",
+     "subject": "Policier et Suspense",
+     "authors": ["Dan Brown"]},
+
+    {"title"  : "Forteresse Digitale",
+     "subject": "Policier et Suspense",
+     "authors": ["Dan Brown"]},
+
+    {"title"  : "Da Vinci Code",
+     "subject": "Policier et Suspense",
+     "authors": ["Dan Brown"]},
+
+    {"title"  : "Deception Point",
+     "subject": "Policier et Suspense",
+     "authors": ["Dan Brown"]},
+
+    {"title"  : "L'homme aux cercles bleus",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Salut et liberté",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Pars vite et reviens tard",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Sans feu ni lieu",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Debout les morts",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Un peu plus loin sur la droite",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Coule la seine",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Sous les vents de neptune",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Ceux qui vont mourir te saluent",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Petit traité de toutes vérités sur l'existence",
+     "subject": "Littérature",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Les jeux de l'amour et la mort",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "L'homme à l'envers",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Dans les bois éternels",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Les quatres fleuves",
+     "subject": "Policier et Suspense",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "Critique de l'anxiété pure",
+     "subject": "Littérature",
+     "authors": ["Fred Vargas"]},
+
+    {"title"  : "L'oreille interne",
+     "subject": "SF",
+     "authors": ["Guy Abadia", "Robert Silverberg"]},
+
+    {"title"  : "Le retour des ténèbres",
+     "subject": "SF",
+     "authors": ["Robert Silverberg", "Isaac Asimov", "George Barlow"]},
+
+    {"title"  : "En un autre pays",
+     "subject": "SF",
+     "authors": ["Robert Silverberg", "Jacques Chambon", "Jean-Pierre Pugi"]},
+
+    {"title"  : "Le livre des crânes",
+     "subject": "SF",
+     "authors": ["Robert Silverberg"]},
+
+    {"title"  : "Né avec les morts",
+     "subject": "SF",
+     "authors": ["Robert Silverberg", "Jacques Chambon", "Alain Dorémieux", "Jean-Pierre Pugi"]}
+]

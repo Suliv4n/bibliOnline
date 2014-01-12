@@ -1,0 +1,7 @@
+[
+	{
+		"name": "Editor",
+		"permissions":["can_edit_database"]
+	}
+
+]

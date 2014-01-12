@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }} | Login {% endblock %}
+
+{% block heading %} Subjects {% endblock %}
+
+{% block main %}
+
+	{{a}}<br/>
+	{{b}}<br/>
+	{{c}}<br/>
+
+	{% if message %}
+	<p class="text-danger">{{ message }}</p>
+	{% endif %}
+
+	<form action="authentification" method="POST">{% csrf_token %}
+		{{form.as_p}}
+		<input type="submit" value="Login" />
+	</form>
+
+{% endblock %}
+
+
+{% block js %}
+	active_tab = '#';
+{% endblock %}

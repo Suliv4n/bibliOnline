@@ -1,0 +1,11 @@
+[
+    {"lastname": "Brown"     , "firstname": "Dan"        },
+    {"lastname": "Vargas"    , "firstname": "Fred"       },
+    {"lastname": "Abadia"    , "firstname": "Guy"        },
+    {"lastname": "Silverberg", "firstname": "Robert"     },
+    {"lastname": "Asimov"    , "firstname": "Isaac"      },
+    {"lastname": "Barlow"    , "firstname": "George"     },
+    {"lastname": "Chambon"   , "firstname": "Jacques"    },
+    {"lastname": "Pugi"      , "firstname": "Jean-Pierre"},
+    {"lastname": "Dorémieux" , "firstname": "Alain"      }
+]

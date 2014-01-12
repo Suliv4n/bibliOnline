@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }} | {{author.lastname}} {{author.firstname}}  {% endblock %}
+
+{% block heading %} {{author.lastname}} {{author.firstname}} {% endblock %}
+
+{% block main %}
+
+		Livres écrits par l'auteur : 		
+		<ul>
+			{% for b in author.books.all%}
+			<li>{{ b }}
+				{% for a in b.authors.all %}<!--
+			-->{% if not forloop.first%}, {% endif %}<a
+			href="/author/{{a.pk}}">{{ a }}</a><!--
+		-->{% endfor %}
+			
+			</li>
+			{% endfor %}
+		</ul>
+
+{% endblock %}
+
+
+{% block js %}
+	active_tab = '#tab_authors';
+{% endblock %}
+
+
+
+		
+

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }} | Subjects {% endblock %}
+
+{% block heading %} Subjects {% endblock %}
+
+{% block main %}
+		<ul>
+			{% for s in subjects %}
+			<li>{{ s }}</li>
+			{% endfor%}
+		</ul>
+{% endblock %}
+
+
+{% block js %}
+	active_tab = '#tab_subjects';
+{% endblock %}

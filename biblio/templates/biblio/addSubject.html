@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }} | Subjects {% endblock %}
+
+{% block heading %} Subjects {% endblock %}
+
+{% block main %}
+
+
+	<form action="addsubject" method="POST">{% csrf_token %}
+		{{form.as_p}}
+		<input type="submit" value="Add" />
+	</form>
+
+{% endblock %}
+
+
+{% block js %}
+	active_tab = '#tab_subects';
+{% endblock %}
