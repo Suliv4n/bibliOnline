@@ -46,7 +46,6 @@ def show_books(request):
 		{"books" : Book.objects.order_by("title")})
 
 def show_author(request, idAuthor):
-	con.update(csrf(request))
 	return render(
 		request,
 		"biblio/author.html",

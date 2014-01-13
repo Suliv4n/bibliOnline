@@ -6,7 +6,7 @@
 {% block main %}
 		<ul>
 			{% for b in books %}
-			<li>{{ b }}
+			<li><a href="/book/{{b.pk}}">{{ b }}</a>
 			{% for a in b.authors.all %}
 			<br/>
 			- <a href="/author/{{a.pk}}">{{ a }}</a>

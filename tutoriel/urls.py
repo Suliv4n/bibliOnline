@@ -24,6 +24,8 @@ urlpatterns = patterns('',
 
     #Liste des livres
     url(r'^books/?$', "biblio.views.show_books"),
+	#Détail d'un  livre
+    url(r'^book/(\d+)/?$', "biblio.views.show_book"),
     #Formulaire ajout d'un livre
     url(r'^addbook/?$', "biblio.views.show_addBookForm"),
 
