@@ -16,9 +16,9 @@
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="pull-right logio">
 				{% if user.is_authenticated %}
-					<span>{{ user }} | <a href="/logout" >log out</a></span>
+					<span>{{ user }} | <a class ="btn btn-danger" href="/logout" >log out</a></span>
 				{% else %}
-					<span><a href="/authentification" >log in</a></span>
+					<span><a class ="btn btn-success" href="/authentification" >log in</a></span>
 				{% endif %}
 			</div> 
 			<h1 class="heading">{% block heading %} Tutorial {% endblock %}</h1>
