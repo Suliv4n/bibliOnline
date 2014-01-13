@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-#
 
 # Create your views here.
-from biblio.models import Book, Author, Subject, Comment
+from biblio.models import Book, Author, Subject, Comment, MemberUser
 from django.shortcuts import render_to_response, render
 
 from django.http import HttpResponseRedirect
@@ -169,6 +169,28 @@ def logout_action(request):
 	if request.user.is_authenticated():
 		logout(request)
 	return HttpResponseRedirect("/authentification")
+
+
+
+@permission_required("biblio.can_borrow")
+def askfor_action(request, book, to):
+    """
+    Action qui permet à un utilisateur authentifié de faire une
+    demande d'emprunt à un autre utilisateur.
+    """
+    book = Book.objects.get(pk=book)
+    to = User.objects.get(pk=to)
+
+
+def show_users(request):
+    """
+    Montrer les users.
+    """
+    return render(
+		request,
+		"biblio/users.html",
+		{"users" : MemberUser.objects.all()})
+
 
 
 def get_author_json(request, pk):
