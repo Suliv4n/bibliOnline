@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import AbstractBaseUser
 
 # Create your models here.
 
@@ -15,6 +15,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     authors = models.ManyToManyField("Author", related_name="books")
     subject = models.ForeignKey("Subject")
+    comments = models.ManyToManyField("Comment", related_name="comments")
 
     def __str__(self):
         return self.title
@@ -34,3 +35,14 @@ class Comment(models.Model):
 	def __str__(self):
 		return self.label
 
+
+
+
+#-------------------CUSTOM USER-----------------------
+class MemberUser(AbstractBaseUser):
+    username = models.CharField(max_length=50)
+    books = models.ManyToManyField("Book", related_name="users")
+
+
+    def __str__(self):
+        return self.username
