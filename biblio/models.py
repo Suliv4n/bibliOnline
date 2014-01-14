@@ -1,6 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, User
+from django.contrib.auth import get_user_model
 
+from django.contrib.auth.models import Group, Permission
 # Create your models here.
 
 class Author(models.Model):
@@ -39,10 +41,42 @@ class Comment(models.Model):
 
 
 #-------------------CUSTOM USER-----------------------
-class MemberUser(AbstractBaseUser):
-    username = models.CharField(max_length=50)
+
+class MemberUserManager(BaseUserManager):
+    def create_user(self, username, password=None, **extra_fields):
+        """
+        Creates and saves a User with the given username and password.
+        """
+        now = timezone.now()
+        if not username:
+            raise ValueError('The given username must be set')
+        user = get_user_model().objects.create_user(username=username)
+
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_superuser(self, username, password, **extra_fields):
+        u = self.create_user(username, password, **extra_fields)
+
+        return u
+
+
+class MemberUser(User):
+    #username = models.CharField(max_length=50, unique=True)
     books = models.ManyToManyField("Book", related_name="users")
+    objects = MemberUserManager()
+
+    USERNAME_FIELD = 'username'
 
 
     def __str__(self):
         return self.username
+
+
+
+
+
+
+#User manager
+

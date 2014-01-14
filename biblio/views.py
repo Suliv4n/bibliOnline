@@ -28,10 +28,12 @@ class AddAuthorForm(forms.Form):
 
 
 def show_main(request):
+    con = {}
+    con.update(csrf(request))
     return render(
 		request,
         "biblio/main.html",
-        {})
+        con)
 
 def show_authors(request):
 	return render(
