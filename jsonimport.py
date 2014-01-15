@@ -3,7 +3,7 @@ from tutoriel import settings
 
 
 
-from biblio.models import Author, Book, Subject
+from biblio.models import Author, Book, Subject, MemberUser
 import json
 
 
@@ -43,7 +43,7 @@ for b in books:
 
 
 #charger les permissions
-from django.contrib.auth.models import Permission, User,Group
+from django.contrib.auth.models import Permission, Group
 from django.contrib.contenttypes.models import ContentType
 
 
@@ -77,7 +77,7 @@ users = json.load(open("biblio/bibliodata/users.json", encoding="utf-8"))
 
 
 for u in users:
-	user = User.objects.create_user(
+	user = MemberUser.objects.create_user(
 		username = u["username"],
 		password = u["password"])
 	user.save()

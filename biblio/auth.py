@@ -4,10 +4,11 @@ from django.contrib.auth.models import User
 
 class MyBackend(object):
     def authenticate(self, username=None, password=None):
-        u = MemberUser.objects.get(username=username, password=password)
-        if u is None:
-            u = user.objects.get(username=username, password=password)
-        return u
+        try:
+            u = MemberUser.objects.get(username=username, password=password)
+            return u
+        except:
+            return None
 
 
     def get_user(self, user_id):
