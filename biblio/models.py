@@ -52,12 +52,13 @@ class MemberUserManager(BaseUserManager):
         """
         Creates and saves a User with the given username and password.
         """
+        now = timezone.now()
         if not username:
             raise ValueError('The given username must be set')
-        user = MemberUser.objects.create(username=username, password=password)
+        user = get_user_model().objects.create_user(username=username)
 
-        #user.set_password(password)
-        #user.groups.add(name="members")
+        user.set_password(password)
+        user.groups.add(name="member")
         user.save()
         return user
 

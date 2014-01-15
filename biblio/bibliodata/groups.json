@@ -3,9 +3,5 @@
 		"name": "Editor",
 		"permissions":["can_edit_database"]
 	}
-	,
-    {
-		"name": "members",
-		"permissions":["can_borrow"]
-	}
+
 ]

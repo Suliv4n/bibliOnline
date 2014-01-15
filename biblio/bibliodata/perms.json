@@ -3,9 +3,4 @@
 		"codename" : "can_edit_database",
 		"name": "Peut éditer la base de données"
 	}
-	,
-    {
-		"codename" : "can_borrow",
-		"name": "Peut emprunter les livres."
-	}
 ]

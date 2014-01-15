@@ -4,16 +4,10 @@
 		"password": "milou",
 		"groups": ["Editor"]
 	}
-	,
+
 	{
 		"username" : "tournesol",
 		"password": "bianca",
 		"groups": []
-	}
-	,
-    {
-		"username" : "bob",
-		"password": "azerty",
-		"groups": ["members"]
 	}
 ]
