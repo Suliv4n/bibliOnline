@@ -5,7 +5,7 @@ PROJECT_ROOT = os.path.dirname(__file__)
 
 def mkpath(path):
     return os.path.join(PROJECT_ROOT,path)
-
+    
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -169,13 +169,3 @@ LOGGING = {
 }
 
 LOGIN_URL="/authentification"
-
-
-##AUTHENTICATION_BACKENDS = (
-##    'biblio.auth.AuthMemberUser',
-##)
-##
-##
-##AUTH_USER_MODEL = 'biblio.MemberUser'
-
-AUTHENTICATION_BACKENDS = ('biblio.auth.MyBackend',)
