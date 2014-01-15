@@ -5,21 +5,13 @@
 
 {% block main %}
 	{{user}}
-	<form method="POST" action="setbooks">
+	<form method="POST" action="/setbooks">{% csrf_token %}
 		<ul>
 			{% for b in books %}
-<<<<<<< HEAD
-				<li>{% if user.perms.biblio.can_borrow %}<input type="checkbox" id="own[]" name="own[]" value="{{b.pk}}">{% endif %}{{ b }}</li>
-=======
-			<li><a href="/book/{{b.pk}}">{{ b }}</a>
-			{% for a in b.authors.all %}
-			<br/>
-			- <a href="/author/{{a.pk}}">{{ a }}</a>
-			{% endfor%}
-			</li>
->>>>>>> aab3a50d60b2fd6b47b347170d51e96ef0f7f4c0
+                <li>{% if user %}<input type="checkbox" id="{{b.pk}}" name="{{b.pk}}" value="{{b.pk}}">{% endif %}{{ b }}</li>
 			{% endfor%}
 		</ul>
+		<input type="submit" name="valider" id="valider" value="Valider">
 	</form>
 {% endblock %}
 

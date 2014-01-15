@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }} | Books {% endblock %}
+
+{% block heading %} Books {% endblock %}
+
+{% block main %}
+
+
+	{% for b in books %}
+		<li>{{ b }}</li>
+	{% endfor%}
+
+{% endblock %}
+
+
+{% block js %}
+	active_tab = '#tab_books';
+{% endblock %}

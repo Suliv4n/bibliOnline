@@ -10,6 +10,7 @@ from django.core.context_processors import csrf
 from django.template import RequestContext
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import AnonymousUser
 
 from biblio.form import *
 
@@ -46,11 +47,11 @@ def show_books(request):
         user = request.user
     else:
         user = None
-
     if user is not None:
         own = user.books
+        pass
     else:
-        own = None
+        own = ""
 
     return render(
 		request,
@@ -192,11 +193,11 @@ def askfor_action(request, to, book):
     demande d'emprunt à un autre utilisateur.
     """
     book = Book.objects.get(pk=book)
-    cible = User.objects.get(pk=to)
-    demandeur = request.user()
+    cible = MemberUser.objects.get(username=to)
+    demandeur = request.user
 
     message = ""
-    if(book not in cible.books):
+    if(book not in cible.books.all()):
         message = cible.username + " doesn't own this book."
     else:
         message = "You asked " + cible.username + " if you can borrow his book, " + book + "."
@@ -215,6 +216,33 @@ def show_users(request):
 		request,
 		"biblio/users.html",
 		{"users" : MemberUser.objects.all()})
+
+
+def i_own_these_books(request):
+    """
+    Action qui met à jour les livres posséder par un MemberUser
+    """
+    user = request.user
+    books = Book.objects.all()
+    form = request.POST
+    if request.method == "POST":
+        for book in books:
+            pk = str(book.pk)
+            if(form.get(pk,False)):
+                user.books.add(book)
+            else:
+                user.books.remove(book)
+    return HttpResponseRedirect("books/")
+
+
+def show_mybooks(request):
+    """
+    Montre les books de l'utilisateur
+    """
+    return render(
+		request,
+		"biblio/mybooks.html",
+		{"books" : request.user.books.all()})
 
 
 

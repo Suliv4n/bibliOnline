@@ -52,19 +52,17 @@ class MemberUserManager(BaseUserManager):
         """
         Creates and saves a User with the given username and password.
         """
-        now = timezone.now()
+
         if not username:
             raise ValueError('The given username must be set')
         user = get_user_model().objects.create_user(username=username)
 
         user.set_password(password)
-        user.groups.add(name="member")
         user.save()
         return user
 
     def create_superuser(self, username, password, **extra_fields):
         u = self.create_user(username, password, **extra_fields)
-
         return u
 
 

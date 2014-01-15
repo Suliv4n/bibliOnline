@@ -77,7 +77,7 @@ users = json.load(open("biblio/bibliodata/users.json", encoding="utf-8"))
 
 
 for u in users:
-	user = User.objects.create_user(
+	user = MemberUser.objects.create_user(
 		username = u["username"],
 		password = u["password"])
 	user.save()
