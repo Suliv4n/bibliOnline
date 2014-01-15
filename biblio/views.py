@@ -60,7 +60,6 @@ def show_books(request):
         "own" : own} )
 
 def show_author(request, idAuthor):
-	con.update(csrf(request))
 	return render(
 		request,
 		"biblio/author.html",

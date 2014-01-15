@@ -8,7 +8,8 @@
 		Livres écrits par l'auteur : 		
 		<ul>
 			{% for b in author.books.all%}
-			<li>{{ b }}
+			<li><a href="/book/{{b.pk}}">{{ b }}</a> 
+			<br/> -			
 				{% for a in b.authors.all %}<!--
 			-->{% if not forloop.first%}, {% endif %}<a
 			href="/author/{{a.pk}}">{{ a }}</a><!--

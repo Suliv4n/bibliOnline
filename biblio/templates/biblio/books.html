@@ -8,7 +8,16 @@
 	<form method="POST" action="setbooks">
 		<ul>
 			{% for b in books %}
+<<<<<<< HEAD
 				<li>{% if user.perms.biblio.can_borrow %}<input type="checkbox" id="own[]" name="own[]" value="{{b.pk}}">{% endif %}{{ b }}</li>
+=======
+			<li><a href="/book/{{b.pk}}">{{ b }}</a>
+			{% for a in b.authors.all %}
+			<br/>
+			- <a href="/author/{{a.pk}}">{{ a }}</a>
+			{% endfor%}
+			</li>
+>>>>>>> aab3a50d60b2fd6b47b347170d51e96ef0f7f4c0
 			{% endfor%}
 		</ul>
 	</form>

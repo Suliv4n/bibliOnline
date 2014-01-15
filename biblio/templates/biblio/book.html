@@ -4,9 +4,14 @@
 {% block heading %} {{author.lastname}} {{author.firstname}} {% endblock %}
 
 {% block main %}
-
-
-
+	<ul>
+	{% for b in books.comments.all %}
+		{% for c in b.comment.all %}<!--
+			-->{% if not forloop.first%}, {% endif %}
+				<li class="col-sm-8">{% c %}</li>
+		{% endfor %}
+	{% endfor %}
+	</ul>
 {% endblock %}
 
 
