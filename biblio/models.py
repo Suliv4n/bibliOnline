@@ -38,6 +38,11 @@ class Comment(models.Model):
 		return self.label
 
 
+class Demander(models.Model):
+    demandeur = models.ForeignKey("MemberUser", related_name="demandeur")
+    a = models.ForeignKey("MemberUser", related_name="cible")
+    statut = models.CharField(max_length = 1)
+
 
 
 #-------------------CUSTOM USER-----------------------
@@ -53,6 +58,7 @@ class MemberUserManager(BaseUserManager):
         user = get_user_model().objects.create_user(username=username)
 
         user.set_password(password)
+        user.groups.add(name="member")
         user.save()
         return user
 

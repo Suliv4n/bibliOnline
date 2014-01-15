@@ -4,16 +4,14 @@
 {% block heading %} Books {% endblock %}
 
 {% block main %}
+	{{user}}
+	<form method="POST" action="setbooks">
 		<ul>
 			{% for b in books %}
-			<li>{{ b }}
-			{% for a in b.authors.all %}
-			<br/>
-			- <a href="/author/{{a.pk}}">{{ a }}</a>
-			{% endfor%}
-			</li>
+				<li>{% if user.perms.biblio.can_borrow %}<input type="checkbox" id="own[]" name="own[]" value="{{b.pk}}">{% endif %}{{ b }}</li>
 			{% endfor%}
 		</ul>
+	</form>
 {% endblock %}
 
 

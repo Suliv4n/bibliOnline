@@ -1,7 +1,7 @@
-from django.core.management import setup_environ
+#from django.conf.settings import configure
 from tutoriel import settings
 
-setup_environ(settings)
+
 
 from biblio.models import Author, Book, Subject
 import json
