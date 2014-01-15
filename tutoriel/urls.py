@@ -48,4 +48,7 @@ urlpatterns = patterns('',
 
     #les users
     url(r'^users/?$', "biblio.views.show_users"),
+
+    #Demande d'emprunt. arg1 = id membre user cible. arg2 = livre cible
+    url(r'^ask-a-book/(d+)/(d+)?$', "biblio.views.askfor_action"),
 )

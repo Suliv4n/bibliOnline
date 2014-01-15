@@ -28,10 +28,12 @@ class AddAuthorForm(forms.Form):
 
 
 def show_main(request):
+    con = {}
+    con.update(csrf(request))
     return render(
 		request,
         "biblio/main.html",
-        {})
+        con)
 
 def show_authors(request):
 	return render(
@@ -40,10 +42,22 @@ def show_authors(request):
 		{"authors" : Author.objects.order_by("lastname")})
 
 def show_books(request):
-	return render(
+    if request.user.is_authenticated():
+        user = request.user
+    else:
+        user = None
+
+    if user is not None:
+        own = user.books
+    else:
+        own = None
+
+    return render(
 		request,
 		"biblio/books.html",
-		{"books" : Book.objects.order_by("title")})
+		{"books" : Book.objects.order_by("title"),
+        "user" : user,
+        "own" : own} )
 
 def show_author(request, idAuthor):
 	con.update(csrf(request))
@@ -172,15 +186,27 @@ def logout_action(request):
 
 
 
-@permission_required("biblio.can_borrow")
-def askfor_action(request, book, to):
+#@permission_required("biblio.can_borrow")
+def askfor_action(request, to, book):
     """
     Action qui permet à un utilisateur authentifié de faire une
     demande d'emprunt à un autre utilisateur.
     """
     book = Book.objects.get(pk=book)
-    to = User.objects.get(pk=to)
+    cible = User.objects.get(pk=to)
+    demandeur = request.user()
 
+    message = ""
+    if(book not in cible.books):
+        message = cible.username + " doesn't own this book."
+    else:
+        message = "You asked " + cible.username + " if you can borrow his book, " + book + "."
+
+
+    return render(
+		request,
+		"biblio/ask.html",
+		{"message" : message})
 
 def show_users(request):
     """
