@@ -260,15 +260,27 @@ def who_own_this_book(request, book):
 		"biblio/heowns.html",
 		{"book" : Book.objects.get(pk=book)})
 
+def my_requests(request):
+    """
+    Montre les livres que l'utilisateur a demandé.
+    """
+    demandes = Demander.objects.filter(demandeur=request.user)
+    pourmoi = Demander.objects.filter(to=request.user)
+    return render(
+		request,
+		"biblio/my_requests.html",
+		{"demandes" : demandes,
+		 "pourmoi" : pourmoi})
+
 def comment(request, idbook):
 	"""
 	Action qui permet d'ajouter un commentaire à un livre
 	"""
 	user = request.user
 	book = Book.objects.get(pk=idbook)
-	
+
 	now = datetime.datetime.now()
-	
+
 	form = request.POST
 	if request.method == "POST":
 		content = request.POST.get("content","")
@@ -276,7 +288,7 @@ def comment(request, idbook):
 			c = Comment.objects.create(user = user, book = book, date = now,comment = content)
 			c.save()
 			book.comments.add(c)
-		
+
 	return HttpResponseRedirect("/book/"+idbook)
 
 def get_author_json(request, pk):

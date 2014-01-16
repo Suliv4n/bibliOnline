@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}{{ block.super }} | Requests {% endblock %}
+
+{% block heading %} Users {% endblock %}
+
+{% block main %}
+		<h2>My requests : </h2>
+		<ul>
+			{% for d in demandes %}
+				{% if d.statut = "d" %}
+					<li>You asked {{d.to.username}} for his book : {{d.book}}<a href="cancel/{{d.to.username}}/{{d.book.pk}}"> cancel</a></li>
+				{% endif %}
+				{% if d.statut = "c" %}
+					<li>You are  borrowing {{d.to.username}}'s book : {{d.book}} <a href="render/{{d.to.username}}/{{d.book.pk}}">render</a></li>
+				{% endif %}
+				{% if d.statut = "n" %}
+					<li>{{d.target.username}} refused to borrow his book : {{d.book}}</li>
+				{% endif %}
+			{% endfor%}
+		</ul>
+		<h2>Requests of other members for you : </h2>
+		<ul>
+			{% for d in pourmoi %}
+				{% if d.statut = "d" %}
+					<li>{{d.to.username}} asked you this book : {{d.book}}<a href="accepte/{{d.to.username}}/{{d.book.pk}}">Accepte</a> <a href="refuse/{{d.to.username}}/{{d.book.pk}}">Refuse</a></li>
+				{% endif %}
+				{% if d.statut = "c" %}
+					<li>{{d.to.username}} borrowing your book : {{d.book}}</li>
+				{% endif %}
+				{% if d.statut = "n" %}
+					<li>You refused {{d.target.username}}'request for this book : {{d.book}}</li>
+				{% endif %}
+			{% endfor%}
+		</ul>
+{% endblock %}
+
+
+{% block js %}
+	active_tab = '#tab_requests';
+{% endblock %}

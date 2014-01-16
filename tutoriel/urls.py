@@ -24,7 +24,7 @@ urlpatterns = patterns('',
 
     #Liste des livres
     url(r'^books/?$', "biblio.views.show_books"),
-	#Détail d'un  livre
+	#DÃ©tail d'un  livre
     url(r'^book/(\d+)/?$', "biblio.views.show_book"),
     #Formulaire ajout d'un livre
     url(r'^addbook/?$', "biblio.views.show_addBookForm"),
@@ -55,15 +55,18 @@ urlpatterns = patterns('',
     #Demande d'emprunt. arg1 = id membre user cible. arg2 = livre cible
     url(r'^askabook/(.*)/(\d+)/?$', "biblio.views.askfor_action"),
 
-    #met à jour les livres de l'utilisateur
+    #met Ã  jour les livres de l'utilisateur
     url(r'^setbooks/?$', "biblio.views.i_own_these_books"),
 
-    #les livres que possédent le user.
+    #les livres que possÃ©dent le user.
     url(r'^mybooks/?$', "biblio.views.show_mybooks"),
 
-    #les users qui possédent ce livre
+    #les users qui possÃ©dent ce livre
     url(r'^whoownthisbook/(\d+)/?$', "biblio.views.who_own_this_book"),
-	
+
 	#commenter un livre
     url(r'^book/comment/(\d+)/?$', "biblio.views.comment"),
+
+	#les demandes
+    url(r'^my_requests/?$', "biblio.views.my_requests")
 )
