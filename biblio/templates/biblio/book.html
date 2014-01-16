@@ -24,18 +24,19 @@
 		No body own this book.
 	{% endif %}
 	
+	<h1>Comments : </h1>	
+	
 	{% for c in book.comments.all %}
-		<hr/>
-		{{c.date}} | {{c.user}}<br/>
+	<div class="commentaire">
+		{{c.date}} | <strong>{{c.user}} </strong><br/>
 		{{c}}		
+	</div><br/>
 	{% endfor %}
-	
-	<h1>Comments : </h1>
-	
+	<br/>
 	{%if user.is_authenticated %}
 		<form method="POST" action="comment/{{book.pk}}"> {% csrf_token %}
-			<textarea id="content" name="content"></textarea><br/>
-			<input type="submit" name="comment" id="comment" value="Comment!">
+			<textarea id="content" name="content"></textarea>
+			<input type="submit" name="comment" id="comment" class="btn btn-success" value="Comment!">
 		</form>
 	{%endif%}
 {% endblock %}

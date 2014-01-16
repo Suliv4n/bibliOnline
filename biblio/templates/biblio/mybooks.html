@@ -5,9 +5,9 @@
 
 {% block main %}
 
-	<h1>My books :<h1>
+	<h1>My books :</h1>
 	{% for b in books %}
-		<li>{{ b }}</li>
+		<li><a href="book/{{b.pk}}" > {{ b }} </a></li>
 	{% endfor%}
 
 {% endblock %}
