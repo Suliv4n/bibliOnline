@@ -4,6 +4,7 @@
 {% block heading %} Authors {% endblock %}
 
 {% block main %}
+	<h1>Liste des auteurs :</h1>
 			{% for a in authors %}
 				<div class="row">
 				 <div class="col-sm-4"><a href="/author/{{ a.pk }}"> {{ a }}</a></div>
