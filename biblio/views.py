@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-#
 
 # Create your views here.
-from biblio.models import Book, Author, Subject, Comment, MemberUser
+from biblio.models import Book, Author, Subject, Comment, MemberUser, Demander
 from django.shortcuts import render_to_response, render
 
 from django.http import HttpResponseRedirect
@@ -18,6 +18,12 @@ from tutoriel.shortcuts import render
 
 
 from django.contrib.auth.decorators import permission_required
+
+
+
+import datetime
+
+
 
 """
 
@@ -70,8 +76,7 @@ def show_book(request, idBook):
 	return render(
 		request,
 		"biblio/book.html",
-		{"book" : Book.objects.get(pk=idBook),
-		"comments": Comment.objects.get(book=idBook)})
+		{"book" : Book.objects.get(pk=idBook)})
 
 
 def show_subjects(request):
@@ -200,8 +205,8 @@ def askfor_action(request, to, book):
     if(book not in cible.books.all()):
         message = cible.username + " doesn't own this book."
     else:
-        message = "You asked " + cible.username + " if you can borrow his book, " + book + "."
-
+        message = "You asked " + cible.username + " if you can borrow his book, " + book.title + "."
+        d = Demander.objects.create(demandeur=request.user, to=MemberUser.objects.get(username=to), book=book, statut = "d")
 
     return render(
 		request,
@@ -245,6 +250,34 @@ def show_mybooks(request):
 		{"books" : request.user.books.all()})
 
 
+def who_own_this_book(request, book):
+    """
+    Montre les MembersUser qui pssédent le book dont le pk
+    est passé en paramètre
+    """
+    return render(
+		request,
+		"biblio/heowns.html",
+		{"book" : Book.objects.get(pk=book)})
+
+def comment(request, idbook):
+	"""
+	Action qui permet d'ajouter un commentaire à un livre
+	"""
+	user = request.user
+	book = Book.objects.get(pk=idbook)
+	
+	now = datetime.datetime.now()
+	
+	form = request.POST
+	if request.method == "POST":
+		content = request.POST.get("content","")
+		if(content != ""):
+			c = Comment.objects.create(user = user, book = book, date = now,comment = content)
+			c.save()
+			book.comments.add(c)
+		
+	return HttpResponseRedirect("/book/"+idbook)
 
 def get_author_json(request, pk):
 	author = Author.objects.get(pk=pk)

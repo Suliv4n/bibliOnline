@@ -9,12 +9,40 @@ div.main{
 }
 
 .active{
-	-webkit-box-shadow: 0 0 3px 0px #2BE2FF;
-	box-shadow:0 0 3px 0px #2BE2FF;
+	-webkit-box-shadow:0 0 3px 0px #3BF9F0;
+	box-shadow:0 0 3px 0px #3BF9F0;
 }
 
 .logio{
 	margin-top:30px;
 	margin-right:30px;
 	color:white;
+}
+.navbar{
+	background:url("../img/fond2.jpg");
+	-webkit-box-shadow: 0 0 4px 0 black;
+	box-shadow: 0 0 4px 0 black;
+}
+
+body{
+	background:url("../img/fond.jpg")repeat-y;
+	background-size:100%;
+}
+
+a{
+	color:white;
+	transition:all 0.5s;
+}
+
+ 
+.dropdown-menu{
+	background:url("../img/fond2.jpg");
+}
+
+.nav ul.dropdown-menu li a {
+	color:Darkgrey;
+}
+.nav ul.dropdown-menu li a:hover {
+	background:Darkgrey;
+	color:black;
 }

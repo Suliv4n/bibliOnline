@@ -5,11 +5,12 @@
 
 {% block main %}
 
-	<h1>My books :<h1>
-	{% for b in books %}
-		<li>{{ b }}</li>
+	<h1>Members who own {{book}} :<h1>
+	<ul>
+	{% for u in book.users.all %}
+		<li>{{ u }} <a href="/askabook/{{u}}/{{book.pk}}"> Wanna borrow his book? </a></li>
 	{% endfor%}
-
+	</ul>
 {% endblock %}
 
 

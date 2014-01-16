@@ -3,7 +3,7 @@ from tutoriel import settings
 
 
 
-from biblio.models import Author, Book, Subject
+from biblio.models import Author, Book, Subject, MemberUser
 import json
 
 

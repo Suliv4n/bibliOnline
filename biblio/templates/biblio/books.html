@@ -4,15 +4,20 @@
 {% block heading %} Books {% endblock %}
 
 {% block main %}
-	{{user}}
+	<h1>All books : </h1>
+	{% if user.is_authenticated %}
 	<form method="POST" action="/setbooks">{% csrf_token %}
+	Check the books you own :
+	{% endif %}
 		<ul>
 			{% for b in books %}
-                <li>{% if user %}<input type="checkbox" id="{{b.pk}}" name="{{b.pk}}" value="{{b.pk}}">{% endif %}{{ b }}</li>
+                <li>{% if user.is_authenticated %}<input type="checkbox" id="{{b.pk}}" name="{{b.pk}}" value="{{b.pk}}" {% if b in user.books.all %} checked="checked" {% endif %}>{% endif %} <a href="book/{{b.pk}}" > {{ b }} </a> </li>
 			{% endfor%}
 		</ul>
-		<input type="submit" name="valider" id="valider" value="Valider">
+	{% if user.is_authenticated %}
+		<input type="submit" name="valider" id="valider" value="Validate">
 	</form>
+	{% endif %}
 {% endblock %}
 
 

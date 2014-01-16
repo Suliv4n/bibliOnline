@@ -29,19 +29,29 @@ class Subject(models.Model):
 
 
 class Comment(models.Model):
-	#user = models.ForeignKey("User")
-	comment = models.TextField()
-	date = models.DateField()
-	book = models.ForeignKey("Book")
+    """
+    Commentaire sur un livre posté par un MemberUser.
+    """
+    user = models.ForeignKey("MemberUser")
+    comment = models.TextField()
+    date = models.DateField()
+    book = models.ForeignKey("Book")
 
-	def __str__(self):
-		return self.label
+    def __str__(self):
+    	return self.comment
 
 
 class Demander(models.Model):
+    """
+    Demande d'emprunt
+    """
     demandeur = models.ForeignKey("MemberUser", related_name="demandeur")
-    a = models.ForeignKey("MemberUser", related_name="cible")
+    to = models.ForeignKey("MemberUser", related_name="cible")
+    #c = en cours
+    #d = en attente de réponse
+    #n = refus
     statut = models.CharField(max_length = 1)
+    book = models.ForeignKey("Book")
 
 
 
@@ -55,9 +65,8 @@ class MemberUserManager(BaseUserManager):
 
         if not username:
             raise ValueError('The given username must be set')
-        user = get_user_model().objects.create_user(username=username)
+        user = MemberUser.objects.create(username=username, password=password)
 
-        user.set_password(password)
         user.save()
         return user
 

@@ -1,17 +1,43 @@
 {% extends "base.html" %}
-{% block title %}{{ block.super }} | {{author.lastname}} {{author.firstname}}  {% endblock %}
+{% block title %}{{ block.super }} | {{book.title}} {% endblock %}
 
 {% block heading %} {{author.lastname}} {{author.firstname}} {% endblock %}
 
 {% block main %}
+	<h1>{{book.title}}</h1>
+	
+	Author(s) :
 	<ul>
-	{% for b in books.comments.all %}
-		{% for c in b.comment.all %}<!--
-			-->{% if not forloop.first%}, {% endif %}
-				<li class="col-sm-8">{% c %}</li>
+		{% for a in book.authors.all%}
+				<li><a href="author/a.pk">{{a.firstname}} {{a.lastname }}</a></li>
 		{% endfor %}
-	{% endfor %}
 	</ul>
+	
+	{% if book.users.all %}
+		Members who own this book :
+		<ul>
+			{% for u in book.users.all %}
+					<li>{{ u }} {%if user != u and user.is_authenticated %}<a href="askfor/{{u.username}}/{{book.pk}}">Wanna borrow his book?</a>{%endif%}</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		No body own this book.
+	{% endif %}
+	
+	{% for c in book.comments.all %}
+		<hr/>
+		{{c.date}} | {{c.user}}<br/>
+		{{c}}		
+	{% endfor %}
+	
+	<h1>Comments : </h1>
+	
+	{%if user.is_authenticated %}
+		<form method="POST" action="comment/{{book.pk}}"> {% csrf_token %}
+			<textarea id="content" name="content"></textarea><br/>
+			<input type="submit" name="comment" id="comment" value="Comment!">
+		</form>
+	{%endif%}
 {% endblock %}
 
 

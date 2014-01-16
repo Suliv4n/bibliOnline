@@ -7,6 +7,7 @@
 		
 		<link rel="stylesheet" href="/static/css/bootstrap.min.css" media="screen">
 		<link rel="stylesheet" href="/static/css/bootstrap-responsive.css" media="screen">
+		<link rel="stylesheet" href="/static/css/bootstrap-theme.min.css" media="screen">
 		<link rel="stylesheet" href="/static/css/tuto.css" media="screen">
 		
 		<title>{% block title %} Tutoriel {% endblock %}</title>
@@ -16,9 +17,9 @@
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="pull-right logio">
 				{% if user.is_authenticated %}
-					<span>{{ user }} | <a class ="btn btn-danger" href="/logout" >log out</a></span>
+					<span>{{ user }} | <a href="/logout" class="btn btn-danger" >log out</a></span>
 				{% else %}
-					<span><a class ="btn btn-success" href="/authentification" >log in</a></span>
+					<span><a href="/authentification" class="btn btn-success" >log in</a></span>
 				{% endif %}
 			</div> 
 			<h1 class="heading">{% block heading %} Tutorial {% endblock %}</h1>
@@ -43,7 +44,8 @@
 						<li class="dropdown" id="tab_books"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Books <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 								<li> <a href="/addbook">Add</a></li>
-								<li> <a href="/books">Show</a></li>
+								<li> <a href="/books">Show all books</a></li>
+								<li> <a href="/mybooks">Show my books</a></li>
 							</ul>
 						</li>
 						<li class="dropdown" id="tab_subjects"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Subjects <b class="caret"></b></a>

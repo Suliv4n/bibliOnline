@@ -38,6 +38,7 @@ urlpatterns = patterns('',
 
     #suppression d'un auteur
     url(r'^delauthor/(\d+)/?$', "biblio.views.delete_author"),
+
     #Formulaire ajout d'un auteur
     url(r'^addauthor/?$', "biblio.views.show_addAuthorForm"),
 
@@ -60,4 +61,9 @@ urlpatterns = patterns('',
     #les livres que possédent le user.
     url(r'^mybooks/?$', "biblio.views.show_mybooks"),
 
+    #les users qui possédent ce livre
+    url(r'^whoownthisbook/(\d+)/?$', "biblio.views.who_own_this_book"),
+	
+	#commenter un livre
+    url(r'^book/comment/(\d+)/?$', "biblio.views.comment"),
 )
