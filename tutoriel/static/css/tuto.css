@@ -46,3 +46,12 @@ a{
 	background:Darkgrey;
 	color:black;
 }
+
+.commentaire{
+	background:rgba(255,255,255,0.5);
+	padding:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	-webkit-box-shadow:0 0 3px 0px black;
+	box-shadow:0 0 3px 0px black;
+}
