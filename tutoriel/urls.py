@@ -68,5 +68,14 @@ urlpatterns = patterns('',
     url(r'^book/comment/(\d+)/?$', "biblio.views.comment"),
 
 	#les demandes
-    url(r'^my_requests/?$', "biblio.views.my_requests")
+    url(r'^my_requests/?$', "biblio.views.my_requests"),
+    
+    #annuler une demande
+    url(r'^cancel/(\d+)?$', "biblio.views.cancel_request"),
+    
+    #accepter une demande
+    url(r'^accept/(\d+)?$', "biblio.views.accept_request"),
+    
+    #refuser une requete
+    url(r'^refuse/(\d+)?$', "biblio.views.refuse_request")
 )

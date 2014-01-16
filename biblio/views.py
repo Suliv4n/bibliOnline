@@ -200,10 +200,15 @@ def askfor_action(request, to, book):
     book = Book.objects.get(pk=book)
     cible = MemberUser.objects.get(username=to)
     demandeur = request.user
-
     message = ""
-    if(book not in cible.books.all()):
+    
+    if(demandeur == cible):
+        message = "You can't borrow your own book!"
+
+    elif(book not in cible.books.all()):
         message = cible.username + " doesn't own this book."
+    elif len(Demander.objects.filter(book=book, demandeur=demandeur, to=cible)) > 0:
+        message = "You've already asked this book to this user!"	
     else:
         message = "You asked " + cible.username + " if you can borrow his book, " + book.title + "."
         d = Demander.objects.create(demandeur=request.user, to=MemberUser.objects.get(username=to), book=book, statut = "d")
@@ -290,6 +295,34 @@ def comment(request, idbook):
 			book.comments.add(c)
 
 	return HttpResponseRedirect("/book/"+idbook)
+	
+def cancel_request(request, demande):
+	"""
+	Action qui permet d'annuler une demande d'emprunt
+	"""
+	Demander.objects.get(pk=demande).delete()
+
+	return HttpResponseRedirect("/my_requests")
+
+def accept_request(request, demande):
+	"""
+	Action qui permet de valider une demande d'emprunt
+	"""
+	d = Demander.objects.get(pk=demande)
+	d.statut = "c"
+	d.save()
+
+	return HttpResponseRedirect("/my_requests")
+	
+def refuse_request(request, demande):
+	"""
+	Action qui permet de refuser une demande d'emprunt
+	"""
+	d = Demander.objects.get(pk=demande)
+	d.statut = "n"
+	d.save()
+
+	return HttpResponseRedirect("/my_requests")
 
 def get_author_json(request, pk):
 	author = Author.objects.get(pk=pk)
